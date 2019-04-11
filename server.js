@@ -13,7 +13,7 @@ require('dotenv').config();
 
 var fs = require("fs");
 
-let pass = process.env.pass;
+let pass = "Leonardo";
 let fileData = "";
 
 fs.readFile("content.txt", "utf8", function(error, data) {
