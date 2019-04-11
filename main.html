@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css"> 
+    </head>
+    <body>
+        <script>
+            let calcData = {
+                rowNum: 1,
+                first25Free: 0,
+            }
+            let status = sessionStorage.getItem("status");
+
+            $.post("/content", {status: status}).then(function(res){
+                if (res.data.retrieved === "true"){
+                    $("body").prepend(res.data.htmlContent);
+                }
+            });
+            $(document).on("click", "button", function(){
+                if($(this).attr("buttType") === "calcButton"){
+                    data = {
+                        zipOne: $("#zipOne").val(),
+                        zipTwo: $("#zipTwo").val()
+                    }
+                    $.post("/distance", data).then(function(res){
+                        
+                        $("tbody").append(
+                            "<tr>" +
+                                "<th scope='row'>" + calcData.rowNum + "</th>" +
+                                "<td> Delivery </td>" + 
+                                "<td>" + data.zipOne + " - " + data.zipTwo + "</td>" +
+                                "<td>" + res.text + "</td>" +
+                                "<td> 4$ </td>" +
+                                "<td style='color: green'>$" + ((parseInt(res.text) - calcData.first25Free) * 4) + "</td>"                                            
+                        )
+                        calcData.rowNum++;
+                    });   
+                }
+                if($(this).attr("buttType") === "first25Free"){
+                    if(calcData.first25Free === 0){
+                        $(this).attr("class", "btn btn-success");
+                        calcData.first25Free = 25;
+                    }else{
+                        $(this).attr("class", "btn btn-danger");
+                        calcData.first25Free = 0;
+                    }
+                    
+                }   
+            });
+            
+        </script>
+    </body>
+</html>

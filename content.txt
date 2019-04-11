@@ -1,0 +1,42 @@
+        <header id="pageHeader">
+            Leo got a big butt heh
+        </header>
+        <div class='container'>
+            <div id='inputBox' class='row'>
+                <div class='col-md-6'>
+                    <input id="zipOne" class='form-control form-control-md' type='text' placeholder='first zip code'>     
+                </div>
+                <div class='col-md-6'>
+                    <input id="zipTwo" class='form-control form-control-md' type='text' placeholder='second zip code'>    
+                </div>
+            </div>
+            <div id="calcButton" class='row'>
+                <div class='col-md-12'>
+                    <p style='text-align: center'><button buttType="calcButton" type='button' class='btn btn-primary'>Calculate</button></p> 
+                </div>
+            </div>
+            <div id="optionalButtons" class="row">
+                <div class="col-md-12">
+                    <button buttType="first25Free" type="button" class="btn btn-danger">First 25 free</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Service</th>
+                                <th scope="col">Zip to Zip</th>
+                                <th scope="col">Distance</th>
+                                <th scope="col">Price Per Mile</th>
+                                <th scope="col">Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>

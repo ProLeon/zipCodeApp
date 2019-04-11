@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div style="margin-bottom: 20px" class="row">
+                <div style="text-align:center; font-size: 19px" class="col-md-12">
+                    Enter password
+                </div>
+            </div>
+            <div class="row">
+                <div style="text-align:center" class="col-md-10">
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+
+
+
+            $("button").on("click", function(){
+                data = {
+                    pass: $("#password").val(),
+                }
+
+                $.post("/authentication", data).then(function(res){
+                    if(res.attempt === "Success"){
+                        sessionStorage.setItem("status", "true");
+                        location.href = "/main";
+                    }
+                });
+            });
+
+        </script>
+    </body>
+</html>
