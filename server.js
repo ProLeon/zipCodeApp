@@ -1,7 +1,7 @@
 axios = require("axios");
 var express = require("express");
 
-var PORT = 1197;
+var PORT = process.env.PORT || 1197;
 var app = express();
 
 var path = require("path");
